@@ -1,0 +1,28 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+nav>img {
+    height: 35px;
+}
+
+nav .unit {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: var(--neutral-800);
+    padding: 0.5rem 0.8rem;
+    border-radius: var(--border-radius-sm);
+    position: relative;
+    transition: background-color 0.3s ease-in;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-500);
+}
+
+nav .unit:hover {
+    cursor: pointer;
+    background-color: var(--neutral-700);
+}

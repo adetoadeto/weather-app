@@ -1,0 +1,28 @@
+.search-dropdown {
+    position: absolute;
+    background-color: var(--neutral-800);
+    width: 100%;
+    border-radius: var(--border-radius-md);
+    text-align: start;
+    padding: 0.5rem;
+    border: 1px solid var(--neutral-700);
+    display: flex;
+    gap: 0.3rem;
+    flex-direction: column;
+    z-index: 1;
+    margin-top: 1rem;
+}
+
+.search-dropdown p {
+    font-weight: var(--font-weight-300);
+    padding: 0.3rem 0.5rem;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid;
+    border-color: transparent;
+}
+
+.search-dropdown p:hover,
+.search-dropdown p:first-of-type {
+    background-color: var(--neutral-700);
+    border-color: var(--neutral-600);
+}

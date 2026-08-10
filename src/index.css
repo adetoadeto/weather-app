@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+@import "tailwindcss";
+
+:root {
+    --neutral-900: hsl(243, 96%, 9%);
+    --neutral-800: hsl(243, 27%, 20%);
+    --neutral-700: hsl(243, 23%, 24%);
+    --neutral-600: hsl(243, 23%, 30%);
+    --neutral-300: hsl(240, 6%, 70%);
+    --neutral-200: hsl(250, 6%, 84%);
+    --neutral-0: hsl(0, 0%, 100%);
+
+    --orange-500: hsl(28, 100%, 52%);
+
+    --blue-500: hsl(233, 67%, 56%);
+    --blue-700: hsl(248, 70%, 36%);
+
+    --font-size: 18px;
+    --font-size-md: 16px;
+    --font-size-sm: 14px;
+
+    --font-heading: "Bricolage Grotesque", sans-serif;
+    --font-body: "DM Sans", sans-serif;
+
+    --font-weight-300: 300;
+    --font-weight-500: 500;
+    --font-weight-600: 600;
+    --font-weight-700: 700;
+
+    --border-radius-xs: 5px;
+    --border-radius-sm: 8px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 15px;
+    --border-radius-xl: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 2rem 6rem;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    background-color: var(--neutral-900);
+    color: var(--neutral-0);
+    font-family: var(--font-body);
+    font-size: var(--font-size);
+    font-weight: var(--font-weight-300);
+    letter-spacing: 0.3px;
+}
+
+h3 {
+    font-weight: var(--font-weight-600);
+}
+
+
+@media (max-width: 1280px) {
+    body {
+       padding: 2rem;
+    }
+}
+
+@media (max-width: 600px){
+    body {
+       padding: 1.5rem 1rem;
+    }
+}
+
+
+
+
+

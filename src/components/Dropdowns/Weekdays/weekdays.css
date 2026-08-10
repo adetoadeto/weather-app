@@ -1,0 +1,32 @@
+.weekdays-dropdown {
+    position: absolute;
+    top: 80px;
+    right: 6%;
+    z-index: 1;
+    background-color: var(--neutral-800);
+    border: 1px solid var(--neutral-700);
+    padding: 0.5rem;
+    width: 200px;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    box-shadow: -6px 10px 5px hsla(243, 96%, 9%, 0.178);
+}
+
+.weekdays-dropdown button {
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--border-radius-sm);
+    text-align: start;
+}
+
+.weekdays-dropdown button:hover,
+.weekdays-dropdown button:nth-child(1) {
+    background-color: var(--neutral-700);
+}
+
+@media (max-width: 1024px) {
+    .weekdays-dropdown {
+        right: 2%;
+    }
+}

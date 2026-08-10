@@ -1,0 +1,42 @@
+.error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    gap: 1rem;
+}
+
+.error h1 {
+    font-weight: var(--font-weight-700);
+    font-size: 3rem;
+    font-family: var(--font-heading);
+}
+
+.error>img {
+    height: 35px;
+}
+
+.error p {
+    width: 40%;
+    text-align: center;
+    color: var(--neutral-300);
+    font-weight: var(--font-weight-500);
+}
+
+.error button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--neutral-800);
+    border-radius: var(--border-radius-sm);
+    padding: 8px 15px;
+    font: inherit;
+    font-weight: var(--font-weight-500);
+    font-size: var(--font-size-md);
+    color: var(--neutral-500);
+}
+
+.error button img {
+    height: 15px;
+}
