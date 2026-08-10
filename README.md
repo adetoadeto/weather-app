@@ -21,7 +21,7 @@ This is a solution to the [Weather app challenge on Frontend Mentor](https://www
 ### Links
 
 - Solution URL: https://github.com/adetoadeto/weather-app
-- Live Site URL: ()
+- Live Site URL: https://weather-now-animated.vercel.app
 
 ## My process
 
