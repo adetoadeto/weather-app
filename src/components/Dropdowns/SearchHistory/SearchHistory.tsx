@@ -4,8 +4,8 @@ import "./search-history.css"
 const SearchHistory = () => {
     return (
         <div className='search-dropdown'>
-            {["CityName", "CityName", "CityName", "CityName"].map(item =>
-                <p>{item}</p>
+            {[1,2,3,4].map(item =>
+                <p key={item}>{item}</p>
             )}
         </div>
     )

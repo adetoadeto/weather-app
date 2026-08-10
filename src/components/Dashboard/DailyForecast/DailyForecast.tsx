@@ -7,8 +7,8 @@ const DailyForecast = () => {
         <div className="daily-forecast">
             <h3>Daily forecast</h3>
             <div>
-                {Array.from({ length: 6 }).map((item, index) =>
-                    <DailyForecastItem index={index} />
+                {[1,2,3,4,5,6].map((item, index) =>
+                    <DailyForecastItem key={item} index={index} />
                 )}
             </div>
         </div>

@@ -39,8 +39,8 @@ const HourlyForecast = () => {
             </div>
 
             <div>
-                {Array.from({ length: 8 }).map((item, index) =>
-                    <HourlyForecastItem index={index} data={hourlyData} />
+                {[1,2,3,4,5,6,7,8].map((item, index) =>
+                    <HourlyForecastItem key={item} index={index} data={hourlyData} />
                 )}
             </div>
 

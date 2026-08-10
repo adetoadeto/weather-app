@@ -20,7 +20,7 @@ This is a solution to the [Weather app challenge on Frontend Mentor](https://www
 
 ### Links
 
-- Solution URL: ()
+- Solution URL: https://github.com/adetoadeto/weather-app
 - Live Site URL: ()
 
 ## My process
