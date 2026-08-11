@@ -22,9 +22,9 @@ class WeatherElements {
   }
 }
 
-const temperature = new WeatherElements("Temperature", "Celsius (°C)", "Fahrenheit (°F)")
-const windSpeed = new WeatherElements("Wind Speed", "km/h", "mph")
-const precipitation = new WeatherElements("Precipitation", "Millimeters (mm)", "Inches (in)")
+const temperature = new WeatherElements("Temperature", "Fahrenheit (°F)", "Celsius (°C)")
+const windSpeed = new WeatherElements("Wind Speed", "mph", "km/h")
+const precipitation = new WeatherElements("Precipitation", "Inches (in)", "Millimeters (mm)")
 
 export const unitItems = [temperature, windSpeed, precipitation]
 
