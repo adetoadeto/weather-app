@@ -1,13 +1,15 @@
+import { useContext } from "react"
+import { WeatherContext } from "../../../../store/weather-context"
 import checkmark from "../../../assets/images/icon-checkmark.svg"
 
 type Item = {
   heading: string;
   imperial: string;
   metric: string;
-  isImperial: boolean
 }
 
-const UnitItem = ({ heading, imperial, metric, isImperial }: Item) => {
+const UnitItem = ({ heading, imperial, metric }: Item) => {
+  const {isImperial} = useContext(WeatherContext)
   return (
     <div className="unit-dropdown__content--items">
       <p className='heading'>{heading}</p>
