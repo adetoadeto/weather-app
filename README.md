@@ -15,8 +15,8 @@ This is a solution to the [Weather app challenge on Frontend Mentor](https://www
 ## Overview
 
 ### Screenshot
+![](screenshot.png)
 
-![](./public/screenshot.jpg)
 
 ### Links
 
