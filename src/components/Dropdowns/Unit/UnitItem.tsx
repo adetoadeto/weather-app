@@ -8,7 +8,6 @@ type Item = {
 }
 
 const UnitItem = ({ heading, imperial, metric, isImperial }: Item) => {
-  console.log(isImperial)
   return (
     <div className="unit-dropdown__content--items">
       <p className='heading'>{heading}</p>

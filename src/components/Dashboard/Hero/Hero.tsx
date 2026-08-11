@@ -7,8 +7,8 @@ import searchIcon from "../../../assets/images/icon-search.svg"
 import "./hero.css"
 
 const Hero = () => {
-  const [IsSearching, setIsSearching] = useState(false)
-  const { inProgress, enteredLocation, getWeatherData } = useContext(WeatherContext)
+  const [isSearching, setIsSearching] = useState(false)
+  const { inProgress, location, enteredLocation, getWeatherData } = useContext(WeatherContext)
 
   return (
     <header className='hero-section'>
@@ -18,10 +18,10 @@ const Hero = () => {
         <div className="search-box">
           <button type='button' className="input-field">
             <label htmlFor="search" aria-label='search-icon'><img src={searchIcon} alt="search-icon" /></label>
-            <input ref={enteredLocation} type="text" placeholder='Search for a place...' onFocus={() => setIsSearching(true)} onBlur={() => setIsSearching(false)} />
+            <input ref={enteredLocation} type="text" placeholder='Search for a place...' defaultValue={location} onFocus={() => setIsSearching(true)} onBlur={() => setTimeout(() => { setIsSearching(false) }, 500)} />
           </button>
           {inProgress && <InProgress />}
-          {IsSearching && <SearchHistory />}
+          {isSearching && <SearchHistory />}
         </div>
 
         <button className="submit-btn" type="button" onClick={getWeatherData}>Search</button>

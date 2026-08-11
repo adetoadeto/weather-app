@@ -17,7 +17,7 @@ const TodayForecast = () => {
     return (
         <div className="today-forecast">
             {summaryHeading.map(item =>
-                <div>
+                <div key={item.heading}>
                     <p>{item.heading}</p>
                     <p>{item.value}</p>
                 </div>

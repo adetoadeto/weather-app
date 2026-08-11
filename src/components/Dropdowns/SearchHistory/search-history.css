@@ -13,16 +13,17 @@
     margin-top: 1rem;
 }
 
-.search-dropdown p {
+.search-dropdown button {
     font-weight: var(--font-weight-300);
     padding: 0.3rem 0.5rem;
     border-radius: var(--border-radius-sm);
     border: 1px solid;
     border-color: transparent;
+    text-align: start;
 }
 
-.search-dropdown p:hover,
-.search-dropdown p:first-of-type {
+.search-dropdown button:hover {
     background-color: var(--neutral-700);
     border-color: var(--neutral-600);
+    cursor: pointer;
 }

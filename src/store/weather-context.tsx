@@ -3,6 +3,7 @@ import { createContext, useEffect, useRef, useState, type RefObject } from "reac
 type WeatherContextType = {
     enteredLocation: RefObject<HTMLInputElement | null>,
     location: string,
+    searchHistory: string[] | null,
     weatherData: Record<string, any> | null,
     inProgress: boolean,
     notFound: boolean,
@@ -10,12 +11,14 @@ type WeatherContextType = {
     isImperial: boolean,
     getWeatherData: () => void,
     handleUnitSwitch: () => void,
-    handleRetry: () => void
+    handleRetry: () => void,
+    handleSelectHistory: (selection: string) => void
 }
 
 export const WeatherContext = createContext<WeatherContextType>({
     enteredLocation: { current: null },
     location: "",
+    searchHistory: null,
     weatherData: null,
     inProgress: false,
     notFound: false,
@@ -23,12 +26,14 @@ export const WeatherContext = createContext<WeatherContextType>({
     isImperial: false,
     getWeatherData: () => { },
     handleUnitSwitch: () => { },
-    handleRetry: () => { }
+    handleRetry: () => { },
+    handleSelectHistory: () => { },
 })
 
 const WeatherContextProvider = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     const enteredLocation = useRef<HTMLInputElement>(null)
     const [location, setLocation] = useState("")
+    const [searchHistory, setSearchHistory] = useState(null)
     const [weatherData, setWeatherData] = useState(null)
     const [inProgress, setInProgress] = useState(false)
     const [notFound, setNotFound] = useState(false)
@@ -41,6 +46,56 @@ const WeatherContextProvider = ({ children }: Readonly<{ children: React.ReactNo
         }
         getWeatherData()
     }, [isImperial])
+
+    useEffect(() => {
+        const history = JSON.parse(localStorage.getItem("searchHistory") ?? "[]")
+        setSearchHistory(history)
+    }, [location])
+
+    const getGeocoding = async () => {
+        const enteredValue = enteredLocation?.current?.value
+        if (!enteredValue) {
+            return
+        }
+        const existingHistory = localStorage.getItem("searchHistory") || ""
+        if (existingHistory?.length <= 0) {
+            localStorage.setItem("searchHistory", JSON.stringify([enteredValue]))
+        } else {
+            const searchHistory = JSON.parse(existingHistory)
+            searchHistory.unshift(enteredValue)
+            localStorage.setItem("searchHistory", JSON.stringify(searchHistory))
+        }
+
+        try {
+            const geocoding = await fetch(`https://nominatim.openstreetmap.org/search?q=${enteredValue}&format=jsonv2&addressdetails=1&limit=1`)
+            const geocodingData = await geocoding.json()
+
+            if (geocodingData.length <= 0) {
+                setInProgress(false)
+                setNotFound(true)
+                return
+            }
+
+            const location = geocodingData[0]
+            const city = location.name
+            // const state = location.address.state
+            let country = location.address.country
+            if (!country) {
+                country = city
+            }
+            const formattedLocation = `${city === country ? city : city + ", " + country}`
+
+            setLocation(formattedLocation)
+
+            return {
+                lat: geocodingData[0]?.lat,
+                lon: geocodingData[0]?.lon
+            }
+        }
+        catch (err) {
+            setServerError(true)
+        }
+    }
 
     const getWeatherData = async () => {
 
@@ -64,7 +119,6 @@ const WeatherContextProvider = ({ children }: Readonly<{ children: React.ReactNo
             }
 
             const data = await response.json()
-            console.log(data)
 
             if (!data) {
                 setInProgress(false)
@@ -81,44 +135,6 @@ const WeatherContextProvider = ({ children }: Readonly<{ children: React.ReactNo
         }
     }
 
-    const getGeocoding = async () => {
-        const enteredValue = enteredLocation?.current?.value
-        if (!enteredValue) {
-            return
-        }
-
-        try {
-            const geocoding = await fetch(`https://nominatim.openstreetmap.org/search?q=${enteredValue}&format=jsonv2&addressdetails=1&limit=1`)
-            const geocodingData = await geocoding.json()
-
-            console.log(geocodingData)
-            if (geocodingData.length <= 0) {
-                setInProgress(false)
-                setNotFound(true)
-                return
-            }
-
-            const location = geocodingData[0]
-            const city = location.name
-            // const state = location.address.state
-            let country = location.address.country
-            if(!country) {
-                country = city
-            }
-            const formattedLocation = `${city === country ? city : city + ", " + country}`
-
-            setLocation(formattedLocation)
-
-            return {
-                lat: geocodingData[0]?.lat,
-                lon: geocodingData[0]?.lon
-            }
-        }
-        catch (err) {
-            setServerError(true)
-        }
-    }
-
     const handleUnitSwitch = () => {
         setIsImperial(prevState => !prevState)
     }
@@ -127,9 +143,17 @@ const WeatherContextProvider = ({ children }: Readonly<{ children: React.ReactNo
         setServerError(false)
     }
 
+    const handleSelectHistory = (selection: string) => {
+        if (!selection) {
+            return
+        }
+        setLocation(selection)
+    }
+
     const ctxValue = {
         enteredLocation,
         location,
+        searchHistory,
         weatherData,
         inProgress,
         notFound,
@@ -137,7 +161,8 @@ const WeatherContextProvider = ({ children }: Readonly<{ children: React.ReactNo
         isImperial,
         getWeatherData,
         handleUnitSwitch,
-        handleRetry
+        handleRetry,
+        handleSelectHistory
     }
 
     return (

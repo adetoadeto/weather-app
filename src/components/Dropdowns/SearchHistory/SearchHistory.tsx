@@ -1,12 +1,15 @@
-
+import { useContext } from "react"
+import { WeatherContext } from "../../../store/weather-context"
 import "./search-history.css"
 
 const SearchHistory = () => {
+    const { searchHistory, handleSelectHistory } = useContext(WeatherContext)
+
     return (
         <div className='search-dropdown'>
-            {[1,2,3,4].map(item =>
-                <p key={item}>{item}</p>
-            )}
+            {searchHistory?.map((item) => {
+                return <button type="button" key={item} onClick={() => handleSelectHistory(item)}>{item}</button>
+            })}
         </div>
     )
 }
