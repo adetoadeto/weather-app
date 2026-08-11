@@ -15,7 +15,7 @@ const UnitDropdown = () => {
         <button onClick={handleUnitSwitch}>Switch to {buttonText}</button>
         {unitItems.map(item =>
 
-          <UnitItem key={item.heading} {...item} isImperial={isImperial} />
+          <UnitItem key={item.heading} {...item} />
          
 
         )}
